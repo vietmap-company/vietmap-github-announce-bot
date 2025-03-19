@@ -9,8 +9,22 @@ app.post('/github-webhook', async (req: Request, res: Response) => {
   console.log('New request called from github');
   const event = req.headers['x-github-event'];
   const payload = req.body;
+  if(event === 'issues' && payload.action === 'closed'){
+    const issue = payload.issue;
+    const repo = payload.repository.full_name;
+    const message = `🔒 *Issue Closed in ${repo}*\n\n*Title:* ${issue.title}\n*Description:* ${issue.body || 'No description provided'}\n🔗 [View Issue](${issue.html_url})  `;
+    try {
+      await axios.post(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+        chat_id: CHAT_ID,
+        text: message,
+        parse_mode: 'Markdown'
+      });
 
-  if (event === 'issue' && payload.action === 'opened') {
+      console.log(`✅ Sent to Telegram: ${issue.title}`);
+    } catch (error: any) {
+      console.error('❌ Error sending message:', error.message);
+    }
+  }else if (event === 'issues' && payload.action === 'opened') {
     const issue = payload.issue;
     const repo = payload.repository.full_name;
     const description = issue.body || 'No description provided';
@@ -45,7 +59,9 @@ app.post('/github-webhook', async (req: Request, res: Response) => {
       console.error('❌ Error sending message:', error.message);
     }
   }
+  // Handled push event
   else if (event === 'push') {
+    
     const commit = payload.head_commit;
     const repo = payload.repository.full_name;
     const message = `🔄 *New Push in ${repo}*\n\n*Commit Message:* ${commit.message}\n*Author:* ${commit.author.name}\n🔗 [View Commit](${commit.url})  `;
@@ -126,6 +142,7 @@ app.post('/github-webhook', async (req: Request, res: Response) => {
       console.error('❌ Error sending message:', error.message);
     }
   }
+  // Handled repository events
   else if (event === 'repository' && payload.action === 'created') {
     const repo = payload.repository;
     const message = `📦 *New Repository Created*\n\n*Repository Name:* ${repo.name}\n*Description:* ${repo.description || 'No description provided'}\n🔗 [View Repository](${repo.html_url})  `;
