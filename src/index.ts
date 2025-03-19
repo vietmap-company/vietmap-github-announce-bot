@@ -1,6 +1,8 @@
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import axios from 'axios';
+import {TELEGRAM_TOKEN} from './env';
+import {CHAT_ID} from './env';
 
 const app = express();
 app.use(bodyParser.json());
