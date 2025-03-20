@@ -17,20 +17,20 @@ export class TeamsJsonHandler {
               "type": "TextBlock",
               "size": "Medium",
               "weight": "Bolder",
-              "text": `Issue mới: (${issueTitle})`,
+              "text": `Issue mới: [${issueTitle}](${issueUrl})`,
             },
             {
               "type": "TextBlock",
               "size": "Medium",
               "weight": "Bolder",
-              "text": `Repository: (${fullName})`,
+              "text": `Repository: [${fullName}](https://github.com/${fullName})`,
             },
 
             {
               "type": "TextBlock",
               "size": "Medium",
               "weight": "Bolder",
-              "text": `Người tạo: (${user})`,
+              "text": `Người tạo: [${user}](https://github.com/${user})`,
             },
 
             {
