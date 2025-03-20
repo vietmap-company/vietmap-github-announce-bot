@@ -35,6 +35,7 @@ app.post('/github-webhook', async (req: Request, res: Response) => {
     const labels = issue.labels.map((label: { name: string }) => label.name).join(', ') || 'No labels';
     const message = `📝 *New Issue in ${repo}*\n\n*Title:* ${issue.title}\n*Description:* ${description} \n *Labels:* ${labels}\n🔗 [View Issue](${issue.html_url})  `;
     let teamsMessage = teamsJsonHandler.getNewIssueJson(issue.title, repo, issue.user.login, issue.body || 'No description provided', issue.html_url);
+    console.log('teamsMessage', teamsMessage);
     try{
       await axios.post(TEAMS_WEBHOOK_URL, teamsMessage);
       console.log(`✅ Sent to Teams: ${issue.title}`);

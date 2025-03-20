@@ -7,44 +7,43 @@ export class TeamsJsonHandler {
     issueUrl: string
   ): any {
     return {
-      type: "message",
-      attachments: [
+      "type": "message",
+      "attachments": [
         {
-          type: "AdaptiveCard",
-          contentType: "application/vnd.microsoft.card.adaptive",
-          body: [
-
+          "type": "AdaptiveCard",
+          "contentType": "application/vnd.microsoft.card.adaptive",
+          "body": [
             {
-              type: "TextBlock",
-              size: "Medium",
-              weight: "Bolder",
-              text: `Issue mới: (${issueTitle})`,
+              "type": "TextBlock",
+              "size": "Medium",
+              "weight": "Bolder",
+              "text": `Issue mới: (${issueTitle})`,
             },
             {
-              type: "TextBlock",
-              size: "Medium",
-              weight: "Bolder",
-              text: `Repository: (${fullName})`,
-            },
-
-            {
-              type: "TextBlock",
-              size: "Medium",
-              weight: "Bolder",
-              text: `Người tạo: (${user})`,
+              "type": "TextBlock",
+              "size": "Medium",
+              "weight": "Bolder",
+              "text": `Repository: (${fullName})`,
             },
 
             {
-              type: "TextBlock",
-              size: "Medium",
-              weight: "Bolder",
-              text: `🔗 Xem issue [tại đây](${issueUrl})`,
+              "type": "TextBlock",
+              "size": "Medium",
+              "weight": "Bolder",
+              "text": `Người tạo: (${user})`,
+            },
+
+            {
+              "type": "TextBlock",
+              "size": "Medium",
+              "weight": "Bolder",
+              "text": `🔗 Xem issue [tại đây](${issueUrl})`,
             },
           ],
-          content: {
-            type: "AdaptiveCard",
-            $schema: "http://adaptivecards.io/schemas/adaptive-card.json",
-            version: "1.0",
+          "content": {
+            "type": "AdaptiveCard",
+            "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+            "version": "1.0",
           },
         },
       ],
