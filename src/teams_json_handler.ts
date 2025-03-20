@@ -10,39 +10,39 @@ export class TeamsJsonHandler {
       type: "message",
       attachments: [
         {
+          type: "AdaptiveCard",
           contentType: "application/vnd.microsoft.card.adaptive",
+          body: [
+
+            {
+              type: "TextBlock",
+              size: "Medium",
+              weight: "Bolder",
+              text: `Issue mới: (${issueTitle})`,
+            },
+            {
+              type: "TextBlock",
+              size: "Medium",
+              weight: "Bolder",
+              text: `Repository: (${fullName})`,
+            },
+
+            {
+              type: "TextBlock",
+              size: "Medium",
+              weight: "Bolder",
+              text: `Người tạo: (${user})`,
+            },
+
+            {
+              type: "TextBlock",
+              size: "Medium",
+              weight: "Bolder",
+              text: `🔗 Xem issue [tại đây](${issueUrl})`,
+            },
+          ],
           content: {
             type: "AdaptiveCard",
-            body: [
-              {
-                type: "TextBlock",
-                size: "Medium",
-                weight: "Bolder",
-                text: `Issue mới đã được tạo: ${issueTitle}`,
-              },
-              {
-                type: "TextBlock",
-                text: `Repository: ${fullName}`,
-                wrap: true,
-              },
-              {
-                type: "TextBlock",
-                text: `Được tạo bởi: ${user}`,
-                wrap: true,
-              },
-              {
-                type: "TextBlock",
-                text: `${body}`,
-                wrap: true,
-              },
-            ],
-            actions: [
-              {
-                type: "Action.OpenUrl",
-                title: "Xem issue",
-                url: `${issueUrl}`,
-              },
-            ],
             $schema: "http://adaptivecards.io/schemas/adaptive-card.json",
             version: "1.0",
           },
@@ -80,7 +80,7 @@ export class TeamsJsonHandler {
                 type: "TextBlock",
                 text: `Author: ${authorName}`,
                 wrap: true,
-              }
+              },
             ],
             actions: [
               {
@@ -96,7 +96,6 @@ export class TeamsJsonHandler {
       ],
     };
   }
-
 
   getNewPRJson(
     repo: string,
@@ -127,7 +126,7 @@ export class TeamsJsonHandler {
                 type: "TextBlock",
                 text: `Description: ${description}`,
                 wrap: true,
-              }
+              },
             ],
             actions: [
               {
@@ -143,7 +142,7 @@ export class TeamsJsonHandler {
       ],
     };
   }
-  getUnhandledEventJson(){
+  getUnhandledEventJson() {
     return {
       type: "message",
       attachments: [
