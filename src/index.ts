@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
-import { teamsMessageCardModel } from "./models/teams_mesage_card_model";
+import { teamsMessageCardModel } from "./models/teams_message_card_model";
 import { telegramApi } from "./api/telegram_api";
 import { teamsApi } from "./api/teams_api";
 
